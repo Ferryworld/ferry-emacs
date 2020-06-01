@@ -1,13 +1,14 @@
-(setq linsee_path "/var/fpwork/xifu/emacs_cfg/")
+;;(setq linsee_path "/var/fpwork/xifu/emacs_cfg/")
+;;(setq linsee_path "/var/fpwork/xifu/ferry-emacs/")
 
 (setq user-full-name "Ferry")
 (setq user-mail-address "xiaoqiang.fu@gmail.com")
-(setq bookmark-default-file "~/.emacs.d/.emacs.bmk")
+(setq bookmark-default-file "~.emacs.d/.emacs.bmk")
 (defadvice bookmark-jump (after bookmark-jump activate)
   (let ((latest (bookmark-get-bookmark bookmark)))
     (setq bookmark-alist (delq latest bookmark-alist))
     (add-to-list 'bookmark-alist latest)))
-(setq load-path (cons (concat linsee_path "/.emacs.d/elisp") load-path))
+(setq load-path (cons (concat linsee_path ".emacs.d/elisp") load-path))
 ;;(setq load-path (cons "/usr/local/share/24.4/" load-path))
 
 (add-to-list 'Info-default-directory-list "~/local/info/")
@@ -87,7 +88,7 @@
 ;;                    sort-of-yang-identifier-regexp
 ;;                    " *{"))))
 
-(setq load-path (cons (expand-file-name (concat linsee_path "/.emacs.d/elisp/")) load-path))
+(setq load-path (cons (expand-file-name (concat linsee_path ".emacs.d/elisp/")) load-path))
 (require 'cmake-mode)
 
 (custom-set-variables
@@ -103,7 +104,7 @@
    (quote
     ("~/history_files/TimeQuadrant.org" "~/history_files/FerrySecret.org" "~/history_files/5G.org" "~/history_files/RF.org")))
  '(package-selected-packages
-   '(bitbake repo auto-org-md org-ref cquery json-mode company-tabnine highlight-parentheses markdown-mode highlight-symbol org-onenote htmlize epresent ob-diagrams org-babel-eval-in-repl babel plantuml-mode adoc-mode ox-asciidoc ag helm-etags-plus pygen pyfmt elpygen groovy-mode auto-complete ahg projectile-codesearch ecb helm-projectile helm-swoop yaml-mode elpy soap-client ox-jira org-jira jira company-c-headers helm-ag multiple-cursors term+ shell-command multi-line multishell multi-term magit-imerge helm-bm helm-ack helm-R helm-company helm-c-yasnippet helm-cscope helm-git-grep helm-git-files helm-git bash-completion function-args stickyfunc-enhance magit-find-file ggtags general bm anzu clean-aindent-mode counsel-projectile company counsel dtrt-indent iedit undo-tree volatile-highlights ws-butler yasnippet-snippets yasnippet zygospore helm-gtags use-package s helm))
+   '(bitbake repo auto-org-md org-ref cquery json-mode company-tabnine highlight-parentheses markdown-mode highlight-symbol org-onenote htmlize epresent ob-diagrams org-babel-eval-in-repl babel plantuml-mode adoc-mode ox-asciidoc ag helm-etags-plus pygen pyfmt elpygen groovy-mode auto-complete-clang auto-complete ahg projectile-codesearch ecb helm-projectile helm-swoop yaml-mode elpy soap-client ox-jira org-jira jira company-c-headers helm-ag multiple-cursors term+ shell-command multi-line multishell multi-term magit-imerge helm-bm helm-ack helm-R helm-company helm-c-yasnippet helm-cscope helm-git-grep helm-git-files helm-git bash-completion function-args stickyfunc-enhance magit-find-file ggtags general bm anzu clean-aindent-mode counsel-projectile company counsel dtrt-indent iedit undo-tree volatile-highlights ws-butler yasnippet-snippets yasnippet zygospore helm-gtags use-package s helm))
  '(projectile-globally-ignored-files '("GPATH" "cscope.*" "*TAGS")))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -112,7 +113,7 @@
  ;; If there is more than one, they won't work right.
  )
 
-(setq package-user-dir (concat linsee_path "/.emacs.d/elpa"))
+(setq package-user-dir (concat linsee_path ".emacs.d/elpa"))
 
 (require 'package)
 (add-to-list 'package-archives
@@ -637,7 +638,7 @@
 (setq jiralib-url "https://jira3.int.net.nokia.com")
 
 ;; load self define macro
-(load-file (concat linsee_path "/.emacs.d/keymacros.el"))
+(load-file (concat linsee_path ".emacs.d/keymacros.el"))
 (put 'erase-buffer 'disabled nil)
 
 (find-file "~/rfsw")
