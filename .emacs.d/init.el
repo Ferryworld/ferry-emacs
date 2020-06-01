@@ -8,7 +8,7 @@
 
 (setq user-full-name "Ferry")
 (setq user-mail-address "xiaoqiang.fu@gmail.com")
-(setq bookmark-default-file "~.emacs.d/.emacs.bmk")
+(setq bookmark-default-file (concat linsee_path ".emacs.d/.emacs.bmk"))
 (defadvice bookmark-jump (after bookmark-jump activate)
   (let ((latest (bookmark-get-bookmark bookmark)))
     (setq bookmark-alist (delq latest bookmark-alist))
@@ -646,4 +646,4 @@
 (load-file (concat linsee_path ".emacs.d/keymacros.el"))
 (put 'erase-buffer 'disabled nil)
 
-(find-file "~/rfsw")
+;; (find-file "~/rfsw")
