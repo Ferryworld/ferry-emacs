@@ -1,0 +1,26 @@
+;; (set-language-environment "UTF-8")
+
+;; (set-default-coding-systems 'utf-8)
+;; (set-buffer-file-coding-system 'utf-8-unix)
+;; (set-clipboard-coding-system 'utf-8-unix)
+;; (set-file-name-coding-system 'utf-8-unix)
+;; (set-keyboard-coding-system 'utf-8-unix)
+;; (set-next-selection-coding-system 'utf-8-unix)
+;; (set-selection-coding-system 'utf-8-unix)
+;; (set-terminal-coding-system 'utf-8-unix)
+;; (setq locale-coding-system 'utf-8)
+;; (setq coding-system-for-read 'utf-8)
+;; (setq coding-system-for-write 'utf-8)
+;; (prefer-coding-system 'utf-8)
+;; (define-coding-system-alias 'UTF-8 'utf-8)
+
+
+;; GBK settings:
+(set-language-environment 'Chinese-gbk)
+(set-default-coding-systems 'chinese-gbk)
+(set-terminal-coding-system 'chinese-gbk)
+(set-selection-coding-system 'chinese-gbk)
+(set-keyboard-coding-system 'chinese-gbk)
+(set-clipboard-coding-system 'chinese-gbk)
+(set-buffer-file-coding-system 'chinese-gbk)
+(modify-coding-system-alist 'process "*" 'chinese-gbk)

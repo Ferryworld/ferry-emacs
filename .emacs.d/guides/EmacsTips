@@ -1,0 +1,463 @@
+#+TITLE:    Emacs Tips
+#+AUTHOR:   Fu Xiaoqiang
+#+EMAIL:    xiaoqiang.fu@gmail.com
+#+DATE:     2017
+#+LANGUAGE: en
+#+OPTIONS:  H:4 num:3 toc:2
+#+SUBTITLE: for version 2.2
+#+STARTUP:  indent
+#+STARTUP:  content
+#+STARTUP:  showall
+#+STARTUP:  showeverything
+#+STARTUP:  overview
+#+TAGS:     Work(w) Private(p) Life(l) CoDe(c) Book(b)
+#+TODO: TODO BLOCK DONE
+#+COLUMNS:  %25ITEM .....
+
+* user guide:
+  http://www.cbi.pku.edu.cn/chinese/documents/csdoc/emacs/
+
+  [[http://mp.weixin.qq.com/s/9Gh9uwgIIMZNeed1UkVEiA][Emacs中那些不常用的行操作命令]]
+
+* Create cscope.files
+  alias tag_gen='find ./ |egrep -i "*\.h$|*\.c$|*\.cp+" |xargs etags'
+  alias cs_gen='find ./ |egrep -i "*\.h$|*\.c$|*\.cp+" > cscope.files && cscope -b -q -k'
+
+  find ./ |egrep -i "*\.h$|*\.c$|*\.cp+" > cscope.files
+  cscope -b -q -k
+  find ./ |egrep -i "*\.h$|*\.c$|*\.cp+" |xargs etags
+
+  find ./ |egrep -i "*.h$|*.c$|*.sdt$|*.spd$|*.sdl$|*.a$|*.p38$|*.p86$|*.a38$|*.a86$|*.inc$|*.inf$|*.pin$|*.cin$|*.cli$|*.cva$|*.sli$|*.pli$|*.pva$" > cscope.files
+  cscope -b -q -k
+
+  Create TAGS:
+  find ./ |egrep -i "*.h$|*.c$|*.sdt$|*.spd$|*.sdl$|*.a$|*.p38$|*.p86$|*.a38$|*.a86$|*.inc$|*.inf$|*.cin$|*.cli$|*.cva$" |xargs etags
+
+  PLM language:
+  /* find ./ |egrep -i "*.h$|*.c$|*.sdt$|*.spd$|*.sdl$|*.a$|*.p38$|*.p86$|*.a38$|*.a86$|*.inc$|*.inf$|*.pin$|*.cin$|*.cli$|*.cva$|*.sli$|*.pli$|*.pva$" |xargs etags --language=auto --regex=@d:\emacs\.emacs.d\regex.file --language=c *.cin --language=asm *.inc
+  */
+
+  /* find ./ |egrep -i "*.h$|*.c$|*.sdt$|*.spd$|*.sdl$|*.a$|*.p38$|*.p86$|*.a38$|*.a86$|*.inc$|*.inf$|*.pin$|*.cin$|*.cli$|*.cva$|*.sli$|*.pli$|*.pva$" |xargs etags --language=auto --regex=@d:\emacs\.emacs.d\regex.file */
+  find ./ |egrep -i "TAGS$" |xargs rm -f
+  find ./ |egrep -i "*.p38$|*.p86$|*.pin$|*.pli$|*.pva$|*.inc$" |xargs etags --language=auto --regex=@d:\emacs\.emacs.d\regex_plm.file
+  find ./ |egrep -i "*.sdt$|*.spd$|*.sdl$|*.inf$|*.sli$" |xargs etags -a --language=auto --regex=@d:\emacs\.emacs.d\regex_tnsdl.file
+  find ./ |egrep -i "*.asm$|*.a38$|*.a86$|*.inc$" |xargs etags -a --language=asm
+  find ./ |egrep -i "*.h$|*.c$|*.cin$|*.cli$|*.cva$" |xargs etags -a --language=auto
+
+
+  find ./ |egrep -i "TAGS$" |xargs rm -f
+  find ./ |egrep -i "\w*\.p38$|\w*\.p86$|\w*\.pin$|\w*\.pli$|\w*\.pva$|\w*\.inc$" |xargs etags --language=auto --regex=@d:\emacs\.emacs.d\regex_plm.file
+  find ./ |egrep -i "\w*\.sdt$|\w*\.spd$|\w*\.sdl$|\w*\.inf$|\w*\.sli$" |xargs etags -a --language=auto --regex=@d:\emacs\.emacs.d\regex_tnsdl.file
+  find ./ |egrep -i "\w*\.asm$|\w*\.a38$|\w*\.a86$|\w*\.inc$" |xargs etags -a --language=asm
+  find ./ |egrep -i "\w*\.h$|\w*\.c$|\w*\.cin$|\w*\.cli$|\w*\.cva$" |xargs etags -a --language=auto
+
+  Delete rubbish files after compile:
+  find ./ |egrep -i "*\.txt$|*\.lib$|*\.obj$|*\.lst$|*\.lbk$|*\..*_[01234]_$|*\.scc$|*\.ccc$|*\.err$|*\.mod$|*\.mp[12]$|*\.lnk$|  *\.cfv$|*\.map$|*\.env$|*\.386$|*\.cfx$|*\.exp$|_lazy*|*\.cfu$|*\.pex$|*\.exl$" |xargs rm
+
+  find -name "*.[ch]" -or -name "*.sdl" -or -name "*.sdt" -or -name "*.spd" -or -name "*.a*"|xargs etags
+
+* grep
+  grep-find: find . -type f -print0 | xargs -0 -e grep -nH –e ***
+  注意：在输入要搜索的字符串时最好使用双引号/而在模式匹配使用正则表达式时，注意使用单引号
+  -A ：后面可加数字，为 after 的意思，除了列出该行外，后续的 n 行也列出
+  -B ：后面可加数字，为 befer 的意思，除了列出该行外，前面的 n 行也列出
+
+  grep -r $'\xB' search ascii code
+
+  rgrep:
+
+* command tips
+** Some examples of use (see also ReplaceRegexp and EmacsCrashRegexp):
+   Search for trailing whitespace: C-M-s SPC+$
+   Highlight all trailing whitespace: M-x highlight-regexp RET SPC+$ RET RET
+   Delete trailing whitespace: M-x replace-regexp RET SPC+$ RET RET (same as ‘M-x delete-trailing-whitespace’)
+   Search for open delimiters: C-M-s \s(
+   Search for duplicated words (works across lines): C-M-s \(\<\w+\>\)\s-+\1
+   Count number of words in buffer: M-x how-many RET \< RET
+   Align words beginning with an uppercase letter followed by a lowercase letter: M-: (setq case-fold-search nil) RET then M-x align-regexp RET \<[[:upper:]][[:lower:]] RET
+   Replace word foo by bar (won’t replace fool by barl): M-x replace-regexp RET \<foo\> RET bar
+   Keep only the first two words on each line: M-x replace-regexp RET ^\(\W*\w+\W+\w+\).* RET \1 RET
+   Suppress lines beginning with ;;: M-x flush-lines RET ^;; RET
+   Remove the text after the first ; on each line: M-x replace-regexp RET \([^;]*\);.* RET \1 RET
+   Keep only lines that contain an email address: M-x keep-lines RET \w+\(\.\w+\)?@\(\w\|\.\)+ RET
+   Keep only one instance of consecutive empty lines: M-x replace-regexp RET ^C-q C-j\{2,\} RET C-q C-j RET
+   Keep words or letters in uppercase, one per line: M-x replace-regexp RET [^[:upper:]]+ RET C-o RET
+   List lines beginning with Chapter or Section: M-x occur RET ^\(Chapter\|Section\) RET
+   List lines with more than 80 characters: M-x occur RET ^.\{81,\} RET
+
+*** query-replace-regexp
+    In TO-STRING, `\&' stands for whatever matched the whole of REGEXP,
+    and `\N' (where N is a digit) stands for
+    whatever what matched the Nth `\(...\)' in REGEXP.
+    `\?' lets you edit the replacement text in the minibuffer
+    at the given position for each replacement.
+
+    In interactive calls, the replacement text can contain `\,'
+    followed by a Lisp expression.  Each
+    replacement evaluates that expression to compute the replacement
+    string.  Inside of that expression, `\&' is a string denoting the
+    whole match as a string, `\N' for a partial match, `\#&' and `\#N'
+    for the whole or a partial match converted to a number with
+    `string-to-number', and `\#' itself for the number of replacements
+    done so far (starting with zero).
+
+    If the replacement expression is a symbol, write a space after it
+    to terminate it.  One space there, if any, will be discarded.
+
+
+
+** M-r Regexp history search in Shell-mode
+
+** open with gnuclient : D:\emacs\bin\gnuclientw.exe "%1"
+
+** C-x ESC ESC (C-x z) 执行历史命令记录，M-p选择上一条命令，M-n选择下一条命令
+
+** tag operation
+
+*** M-. tag <RET>
+    Find first definition of tag (find-tag).
+
+*** C-u M-.
+    Find next alternate definition of last tag specified.
+
+*** C-M-. pattern <RET>
+    Find a tag whose name matches pattern (find-tag-regexp).
+
+*** C-u C-M-. / M-0 M-.
+    Find the next tag whose name matches the last pattern used.
+
+*** C-u - M-.
+    Move back to previous tag definitions
+
+*** M-*
+    Pop back to where you previously invoked M-. and friends.
+
+*** C-M-i / M-TAB 自动补齐函数名。
+
+** fill-paragraph (alt-p) -- 智能地帮你把文本分行，这是必备良药啊，在注释里面都能用
+
+** 矩形区域的两端是由 Mark 和 Point 确定的。
+   C-x r r（复制标记的矩形区域）
+   C-x r g/i（粘贴到光标所在的位置）
+   C-x r d（删除矩形区域）
+   C-x r k（删除并保存到剪切板）
+   C-x r y（从剪切板复制）
+   C-x r o（在矩形区插入空白，内容右移）
+   C-x r c（清除矩形区的内容）
+   C-x r t  用串填充矩形区域
+   C-x r o  插入空白的矩形区域
+   C-x r y  插入之前删除的矩形区域
+   C-x r k  删除矩形区域
+   C-x r c  将当前矩形区域清空
+
+** align-regexp
+   M-x align-regexp 可以方便的对齐一些文字
+
+** Emacs 删除特定的行
+   M-x flush-lines ^$ Enter Enter 删除所有空行
+   M-x flush-lines ^# Enter Enter 删除所有以#开头的行
+   M-x keep-lines ^# Enter Enter  删除所有不以#开头的行
+
+** M-^ 将当前行接到上一行末尾处
+
+** highlight-changes-mode emphasize what you changed.
+
+** 正则表达式中的字符：
+
+   ^          匹配行首
+
+   $          匹配行尾
+
+   .          匹配任意单个字符
+
+   .*         匹配任意个字符
+
+   \<         匹配单词的开头
+
+   \>         匹配单词的结尾
+
+   []         匹配[]中的任何一个字符，如[a-z]匹配任何一个小写字母
+
+** HIDE SHOW keys
+   (global-set-key (kbd "C-c h") 'hs-hide-block)
+   (global-set-key (kbd "C-c x") 'hs-show-block)
+   (global-set-key (kbd "C-c l") 'hs-hide-level)
+   (global-set-key (kbd "C-c c") 'hs-toggle-hiding)
+
+** ^M (C-q C-m),这个应该是Mac机产生的换行符
+   replace-string RET C-q C-m RET RET
+   注意上面的C-q C-m就是换行符的生成方法,而不是简单的输入^M.
+
+** coding system
+   Revisiting the current file using the coding system CODING:
+   C-x <RET> r CODING <RET>
+   Use coding system CODING for saving or revisiting the visited file in the current buffer:
+   C-x <RET> f CODING <RET>
+   Specify coding system CODING for the immediately following command.
+   C-x <RET> c CODING <RET>
+   Convert a region that was decoded using coding system WRONG, decoding it using coding system RIGHT instead.
+   M-x recode-region <RET> RIGHT <RET> WRONG <RET>
+   若要转换dos格式到unix格式，则可用替换命令:
+   M-% C-q C-m RET C-q C-j RET
+   其中C-q的作用是输入控制字符，如C-q C-m输入^M, 即\r, C-q C-j输入\n
+
+** mark set
+   C-u C-@ [Alt-Enter] 在本缓冲区中根据Mark Set的顺序依次向后跳转。
+   C-x C-@ [Alt-M]在全局中根据Mark Set的顺序依次向后跳转。
+
+** artist-mode : http://fangzhzh.info/blog/drawing-picture-in-emacs-using-ditaa.html
+   利用emacs画图模式
+   http://emacser.com/artist-mode.htm
+
+** Emacs Macro
+   C-x ( (M-x kmacro-start-macro)
+   C-x ) (M-x kmacro-end-macro)
+   C-x e (M-x kmacro-end-and-call-macro)
+
+** DMX env cmd:
+   cmd.exe /a="/K D: & y1env 2.5-0 & CALL C:\APPS\DMXSEE\bin\spmticks.bat"
+   ala: search alarm name and number
+   ald: use alarm number to display alarm definition file
+   err: search err code, put a 'h' in the end of error code if hex
+   api: search api you want
+   fam: search family id and name
+   file: search file id and name
+   mes: use message number to display message definition
+   msg: search message number
+   STATE: search unit state information
+   data: search and display data type information
+   UNIT: search unit information
+   SEACOL: search in package infomation
+   h2d: change hex number to decimal number
+   d2h: change decimal number to hex number
+   pde: search the keyword in WWWPDE using env set in dmxsee
+   folder : open current folder
+   Meeting : open meeting room reservation page in today and 5-6 fl
+   localbuild: local build of pac already in you disk
+   Sofiabuild: build a version of PAC in sofia
+   spmdiff:spmdiff dtooptgx.c 2.10-0 2.11-0
+
+** list-colors-display list-faces-display
+
+** describe-bindings  describe-key	 apropos
+
+** ispell and flyspell
+   (global-set-key (kbd "<f8>") 'ispell-word)
+   (global-set-key (kbd "C-S-<f8>") 'flyspell-mode)
+   (global-set-key (kbd "C-M-<f8>") 'flyspell-buffer)
+   (global-set-key (kbd "C-<f8>") 'flyspell-check-previous-highlighted-word)
+   (defun flyspell-check-next-highlighted-word ()
+   "Custom function to spell check next highlighted word"
+   (interactive)
+   (flyspell-goto-next-error)
+   (ispell-word)
+   )
+   (global-set-key (kbd "M-<f8>") 'flyspell-check-next-highlighted-word)
+
+
+** register
+
+*** Save Positions in Registers
+
+**** C-x r SPC r
+     Save position of point in register r (point-to-register).
+
+**** C-x r j r
+     Jump to the position saved in register r (jump-to-register).
+
+*** Saving Text in Registers
+
+**** C-x r s r
+     Copy region into register r (copy-to-register).
+
+**** C-x r i r
+     Insert text from register r (insert-register).
+
+**** M-x append-to-register RET r
+     Append region to text in register r.
+
+**** M-x prepend-to-register RET r
+     Prepend region to text in register r.
+
+*** Saving Rectangles in Registers
+
+**** C-x r r r
+     Copy the region-rectangle into register r (copy-rectangle-to-register). With numeric argument, delete it as well.
+
+**** C-x r i r
+     Insert the rectangle stored in register r (if it contains a rectangle) (insert-register).
+
+*** Saving Window Configurations in Registers
+
+**** C-x r w r
+     Save the state of the selected frame's windows in register r (window-configuration-to-register).
+
+**** C-x r f r
+     Save the state of all frames, including all their windows, in register r (frame-configuration-to-register).
+
+*** Keeping Numbers in Registers
+
+**** C-u number C-x r n r
+     Store number into register r (number-to-register).
+
+**** C-u number C-x r + r
+     Increment the number in register r by number (increment-register).
+
+**** C-x r g r
+     Insert the number from register r into the buffer.
+
+** electric-pair-mode
+   Emacs 24 has a new minor mode electric-pair-mode. When on, typing any left bracket automatically insert the right matching bracket
+
+** rectangle-number-lines
+   rectangle-number-lines Ctrl+x r N will insert a vertical column of numbers into a block of text.
+
+** C-2 M-x occur RET display several lines.
+
+** occur-edit-mode: Edit Search Output in list matching lines
+   When using list-matching-lines (aka occur) or multi-occur, you can edit the output, so that the change will happen in the original file. In the output buffer, call occur-edit-mode 【e】. Example:
+   Open a file, then call occur or multi-occur.
+   Switch cursor to the output pane.
+   Call occur-edit-mode 【e】.
+   Edit. When done, call occur-cease-edit 【Ctrl+c Ctrl+c】.
+   Your changes are made in original file(s) too. You still need to save the file(s).
+
+** Multi-Occur
+   若要在多个buffer上同时使用occur，则你需要用 multi-occur。有两种方式
+   调用 multi-occur:一种方式是用 M-x multi-occur-in-matching-buffers。
+   该命令会让你输入一个正则表达式来匹配要在哪些buffer上调用 occur。另
+   一种方式是直接运行 M-x multi-occur, 该命令则需要你明确地选择在哪几
+   个buffer上调用 occur。
+
+** delete-duplicate-lines
+| prefix argument | 效果                                   |
+|-----------------+----------------------------------------|
+| Without         | 从上往下扫描重复行，保留最上面的重复行 |
+| C-u             | 从下往上扫描重复行，保留最下面的重复行 |
+| C-u C-u         | 只删除相邻的重复行                     |
+| C-u C-u C-u     | 不要删除相邻的重复行                   |
+
+
+** Color Themes
+   call load-theme
+
+** C-u M-! date : insert current date&time
+   C-u indicates for parameter inputs before commands
+
+** ssh in emacs
+   C-x C-f within Emacs and type /ssh:username@server.domain:
+
+** markdown chinese input preview support
+   Input the following line at the beginning of MD file
+   <p><meta http-equiv="content-type" content="text/html; charset=UTF-8"></p>
+
+** find-dired find-name-dired find-lisp-find-dired
+   find-grep find-grep-dired
+
+** sort
+
+*** sort-lines
+    最简单的行排序方法是调用 M-x sort-lines，它会将region内的行按从小
+    到大的顺序进行排序。若你想按照从大到小的顺序进行排序，则可以给它传
+    递一个prefix argment: C-u M-x sort-lines。类似的，若你执行 M-x
+    sort-lines 之前没有选中region，则表示作用于从光标当前位置到buffer
+    结尾这部分的区域。它的作用类似于不带任何参数调用 sort。
+
+*** sort-fields/sort-numeric-fields
+    如果你想根据行中第N个域的值来排序，那么你需要用的命令就是
+    sort-fields 和 sort-numeric-fields 了。这两个命令的使用方式是一样
+    的。 都是通过传递一个numeric argument来指定根据哪个域(从1开始计数)
+    的值来进行排序。例如，要根据第3个域的内容，以数字的方式进行排序，
+    则执行 C-3 sort-numeric-fields。sort-fields 和 sort-numeric-fields
+    只能根据某一个域的值进行排序，而且域与域之间肯定是以空格未做分隔的。
+    它的作用类似于 sort -kN 和 sort -kN -n。
+
+*** sort-columns
+    sort-columns 可以让你指定根据那几列的值进行排序，方法是先mark一个
+    region在执行 M-x sort-columns。这个region的高指定了要对哪些行进行
+    排序， region的宽则指定了根据那些列的值进行排序。
+
+*** sort-regexp-fields
+** 行对齐
+
+*** align and align-current
+
+    一般来说，要对代码进行对齐只需要选中一个region，然后运行 M-x align
+    就行了。 Emacs会自动根据 align-rules-list 中定义的规则自动进行对齐
+    操作。如果觉得先要选中region太麻烦的话，Emacs提供了一个 M-x
+    align-current 命令。 该命令会先看当前行符合哪个重排规则，然后尝试
+    下一行是否符合该重排规则，若符合该重排规则则进行重排然后再检查下一
+    行，一直到某一行不符合该重排规则为止。
+
+*** align-regexp
+
+    align-regexp允许你自定义自己的对齐方式。 它有两种模式，新手模式和复杂模式。
+
+**** 新手模式
+
+     直接运行 align-regexp 会进入新手模式。在新手模式下，你只需要输入
+     一个表示对齐标识的正则表达式就可以了。例如下面是一个
+     从”mastering-emacs”中截取的例子：
+
+     假设原始文档是这样的
+
+     Cappuccino $2.00
+     Caramel Latte $2.30
+     Americano $3.50
+     Macchiato $4.00
+
+     我们想要让它按照$对齐，那么可以这样，运行M-x align-regexp ，然后在"Align regexp:"中输入$
+
+     最终的结果是：
+
+     Cappuccino    $2.00
+     Caramel Latte $2.30
+     Americano     $3.50
+     Macchiato     $4.00
+
+**** 复杂模式
+
+     当你要对多列进行对齐时，就必须要使用复杂模式了，进入的方式是给它
+     一个prefix argument: C-u M-x align-regexp。在复杂模式下，Emacs会
+     以此要求你输入一个表示对齐标识的正则表达式，且这个正则表达式中必
+     须包含至少一个分组。 一个常见的分组就是 \\(\\s-*\\) 表示任意多个
+     空白字符。随后Emacs会询问你可以修改第几个分组中的内容来进行对齐。
+     接着，Emacs问你会询问你要用对齐后两个域之间最少间隔多少个空白，默
+     认是 align-default-spacing 中的值。最后，Emacs会询问你是否重复应
+     用此规则于多列，当需要多列对齐时，往往需要选择 yes
+
+     下面还是一个从”mastering emacs”中的例子：
+
+     假设有这么段文字
+
+     Price,Product,Qty Sold
+     $2.00,Cappuccino,289
+     $2.30,Caramel Latte,109
+     $3.50,Americano,530
+     $4.00,Macchiato,20
+
+     我们想让它按照逗号对齐，由于涉及到多列对齐，因此需要使用 C-u M-x
+     align-regexp 进入复杂模式。我们要根据逗号进行对齐，且空格应该插入
+     到逗号的后面，因此”Complex align using regexp: “的值应该输
+     入”,(\s-*)“ 其中逗号后面的分组就是插入空格的位置。
+
+     由于我们要修改的是表达式中第一个分组的位置，因此”Parenthesis
+     group to modify (justify if negative):” 的值我们输入 1
+
+     我们可以让每个对齐列之间分隔的间距大一点，这里”Amount of spacing
+     (or column if negative): “ 我们输入 5，表示最少间距是5个空格最后
+     我们要对齐多个列，因此”Repeat throughout the line: “我们输入 yes
+
+     最终的结果是：
+
+     Price,     Product,           Qty Sold
+     $2.00,     Cappuccino,        289
+     $2.30,     Caramel Latte,     109
+     $3.50,     Americano,         530
+     $4.00,     Macchiato,         20
+
+
+** mount vagrant folder
+mount.vboxsf -o uid=`id -u vagrant`,gid=`getent group vagrant | cut -d: -f3` vagrant /vagrant
+mount.vboxsf -o uid=`id -u vagrant`,gid=`getent group vagrant | cut -d: -f3` vagrant_data /vagrant_data
+
