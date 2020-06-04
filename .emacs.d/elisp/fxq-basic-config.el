@@ -195,10 +195,10 @@
 ;;(require 'mpg123)
 
 ;;Setting for code-reading
-(setq load-path (cons "/usr/share/cscope" load-path))
-(require 'xcscope)
-(add-hook 'plm-mode-common-hook '(lambda() (require 'xcscope)))
-(add-hook 'tnsdl-mode-common-hook '(lambda() (require 'xcscope)))
+;;(setq load-path (cons "/usr/share/cscope" load-path))
+;;(require 'xcscope)
+;;(add-hook 'plm-mode-common-hook '(lambda() (require 'xcscope)))
+;;(add-hook 'tnsdl-mode-common-hook '(lambda() (require 'xcscope)))
 ;;---------------------------------------------------
 ;Added by Ferry on 08/07/2012 for omitting the warning in Emacs 24.1.1
 (setq byte-compile-warnings nil)
