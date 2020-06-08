@@ -35,6 +35,10 @@
 ;;;Tab is 4
 ;;Forced set tab width
 (setq-default tab-width 4)
+(setq-default js2-basic-offset 2
+              js-indent-level 2)
+(setq css-indent-offset 2)
+
 ;; 2012/06/30 Forced replace tab width with some whitespace
 (setq-default indent-tabs-mode nil)
 ;; 2012/07/02 Set default TAGS file
