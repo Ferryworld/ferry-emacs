@@ -30,7 +30,7 @@
 ;;(load "fxq-erc")
 (load "fxq-dired")
 (load "fxq-mode")
-(load "fxq-key-bindings")
+;; (load "fxq-key-bindings")
 ;; (load "fxq-tnsdl")
 ;; (load "fxq-robot-mode")
 ;; (load "fxq-python-mode")
@@ -144,6 +144,9 @@
   (require 'setup-helm-gtags)
   )
 
+;; load key binding after package installation
+(load "fxq-key-bindings")
+
 (load "iedit")
 (require 'iedit)
 
@@ -178,7 +181,7 @@
 
 ;; (add-to-list 'load-path "~/.emacs.d/elisp/auto-complete")
 
-(require 'auto-complete-config)
+;; (require 'auto-complete-config)
 ;; (add-to-list 'ac-dictionary-directories (concat linsee_path "/.emacs.d/elisp/auto-complete/dict"))
 ;; (add-to-list 'load-path (concat linsee_path "/.emacs.d/elisp/auto-complete-clang"))
 (require 'auto-complete-clang)
@@ -321,6 +324,8 @@
 (require 'ws-butler)
 (add-hook 'c-mode-common-hook 'ws-butler-mode)
 
+(add-to-list 'load-path
+             (concat linsee_path "/.emacs.d/elpa/yasnippet-20200524.2215"))
 (require 'yasnippet)
 (yas-global-mode 1)
 
@@ -640,10 +645,22 @@
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; org-jira
-(setq jiralib-url "https://jira3.int.net.nokia.com")
+;;(setq jiralib-url "https://jira3.int.net.nokia.com")
+(setq jiralib-url "https://jiradc.int.net.nokia.com")
+(require 'org-jira)
 
 ;; load self define macro
 (load-file (concat linsee_path ".emacs.d/keymacros.el"))
 (put 'erase-buffer 'disabled nil)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . nil)
+   (plantuml . t)
+   (calc . t)
+   (R . t)))
+
+(setq org-plantuml-jar-path
+      (expand-file-name "~/plantuml.jar"))
 
 ;; (find-file "~/rfsw")
