@@ -107,7 +107,7 @@
  '(markdown-command "/usr/bin/pandoc")
  '(org-agenda-files
    (quote
-    ("~/history_files/TimeQuadrant.org" "~/history_files/FerrySecret.org" "~/history_files/5G.org" "~/history_files/RF.org")))
+    ("/vagrant_data/Source/OpenSource/History_files/history_files/TimeQuadrant.org" "/vagrant_data/Source/OpenSource/History_files/history_files/FerrySecret.org" "/vagrant_data/Source/OpenSource/History_files/history_files/Jetron.org" "/vagrant_data/Source/OpenSource/History_files/history_files/mind.org")))
  '(package-selected-packages
    '(bitbake repo auto-org-md org-ref cquery json-mode company-tabnine highlight-parentheses markdown-mode highlight-symbol org-onenote htmlize epresent ob-diagrams org-babel-eval-in-repl babel plantuml-mode adoc-mode ox-asciidoc ag helm-etags-plus pygen pyfmt elpygen groovy-mode auto-complete-clang auto-complete ahg projectile-codesearch ecb helm-projectile helm-swoop yaml-mode elpy soap-client ox-jira org-jira jira company-c-headers helm-ag multiple-cursors term+ shell-command multi-line multishell multi-term magit-imerge helm-bm helm-ack helm-R helm-company helm-c-yasnippet helm-cscope helm-git-grep helm-git-files helm-git bash-completion function-args stickyfunc-enhance magit-find-file ggtags general bm anzu clean-aindent-mode counsel-projectile company counsel dtrt-indent iedit undo-tree volatile-highlights ws-butler yasnippet-snippets yasnippet zygospore helm-gtags use-package s helm))
  '(projectile-globally-ignored-files '("GPATH" "cscope.*" "*TAGS")))
@@ -185,12 +185,26 @@
 ;; (add-to-list 'ac-dictionary-directories (concat linsee_path "/.emacs.d/elisp/auto-complete/dict"))
 ;; (add-to-list 'load-path (concat linsee_path "/.emacs.d/elisp/auto-complete-clang"))
 (require 'auto-complete-clang)
-(setq ac-auto-start nil)
+(setq ac-clang-auto-save t)
+(setq ac-auto-start t)
 (setq ac-quick-help-delay 0.5)
 (ac-set-trigger-key "TAB")
 (ac-set-trigger-key "<tab>")
 (define-key ac-mode-map  [(control tab)] 'auto-complete)
 (defun my-ac-config ()
+  (setq ac-clang-flags
+        (mapcar(lambda (item)(concat "-I" item))
+               (split-string
+                "
+ /usr/include/c++/5
+ /usr/include/x86_64-linux-gnu/c++/5
+ /usr/include/c++/5/backward
+ /usr/lib/gcc/x86_64-linux-gnu/5/include
+ /usr/local/include
+ /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+")))
   (setq-default ac-sources '(ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
   (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)
   ;; (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
@@ -325,8 +339,10 @@
 (add-hook 'c-mode-common-hook 'ws-butler-mode)
 
 (add-to-list 'load-path
-             (concat linsee_path "/.emacs.d/elpa/yasnippet-20200524.2215"))
+             (concat linsee_path "/.emacs.d/elpa/yasnippet-20200604.246"))
 (require 'yasnippet)
+(add-to-list 'yas-snippet-dirs (expand-file-name (concat linsee_path "/.emacs.d/elpa/yasnippet-snippets-20210105.1346")))
+
 (yas-global-mode 1)
 
 
@@ -653,12 +669,32 @@
 (load-file (concat linsee_path ".emacs.d/keymacros.el"))
 (put 'erase-buffer 'disabled nil)
 
+;; C-c C-c 选定程序码块进行运算
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((emacs-lisp . nil)
+ '((emacs-lisp . t)
+   (C . t)
+   (ditaa . t)
+   (dot . t)
+   (js . t)
+   (latex . t)
+   (perl . t)
+   (python . t)
+   (ruby . t)
+   ;; (sh . t)
    (plantuml . t)
+   (clojure .t)
    (calc . t)
-   (R . t)))
+   ))
+;; C-c C-c 不再询问是否进行运算，直接开始
+(setq org-confirm-babel-evaluate nil)
+
+;; (org-babel-do-load-languages
+;;  'org-babel-load-languages
+;;  '((emacs-lisp . nil)
+;;    (plantuml . t)
+;;    (calc . t)
+;;    (R . t)))
 
 (setq org-plantuml-jar-path
       (expand-file-name "~/plantuml.jar"))
