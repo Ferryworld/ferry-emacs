@@ -107,7 +107,7 @@
  '(markdown-command "/usr/bin/pandoc")
  '(org-agenda-files
    (quote
-    ("~/history_files/TimeQuadrant.org" "~/history_files/FerrySecret.org" "~/history_files/5G.org" "~/history_files/RF.org")))
+    ("/vagrant_data/Source/OpenSource/History_files/history_files/TimeQuadrant.org" "/vagrant_data/Source/OpenSource/History_files/history_files/FerrySecret.org" "/vagrant_data/Source/OpenSource/History_files/history_files/RF.org")))
  '(package-selected-packages
    '(bitbake repo auto-org-md org-ref cquery json-mode company-tabnine highlight-parentheses markdown-mode highlight-symbol org-onenote htmlize epresent ob-diagrams org-babel-eval-in-repl babel plantuml-mode adoc-mode ox-asciidoc ag helm-etags-plus pygen pyfmt elpygen groovy-mode auto-complete-clang auto-complete ahg projectile-codesearch ecb helm-projectile helm-swoop yaml-mode elpy soap-client ox-jira org-jira jira company-c-headers helm-ag multiple-cursors term+ shell-command multi-line multishell multi-term magit-imerge helm-bm helm-ack helm-R helm-company helm-c-yasnippet helm-cscope helm-git-grep helm-git-files helm-git bash-completion function-args stickyfunc-enhance magit-find-file ggtags general bm anzu clean-aindent-mode counsel-projectile company counsel dtrt-indent iedit undo-tree volatile-highlights ws-butler yasnippet-snippets yasnippet zygospore helm-gtags use-package s helm))
  '(projectile-globally-ignored-files '("GPATH" "cscope.*" "*TAGS")))
