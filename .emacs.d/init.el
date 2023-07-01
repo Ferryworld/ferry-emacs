@@ -124,6 +124,11 @@
 (add-to-list 'package-archives
          '("melpa" . "http://melpa.org/packages/") t)
 
+(add-to-list 'package-archives
+         '( "jcs-elpa" . "https://jcs-emacs.github.io/jcs-elpa/packages/") t)
+(setq package-archive-priorities '(("melpa"    . 5)
+                                   ("jcs-elpa" . 0)))
+
 (package-initialize)
 
 (when (not package-archive-contents)
