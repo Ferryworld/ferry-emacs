@@ -1,0 +1,35 @@
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8; mode: lisp-data -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("MD-LNC_wsl"
+ (filename . "~/xqfu/mind/MD-LNC/")
+ (front-context-string)
+ (rear-context-string . "96 Jun 28 20:43 ")
+ (position . 418))
+("MD-CMS_wsl"
+ (filename . "~/xqfu/mind/MD-CMS/")
+ (front-context-string . "code\n  drwxr-xr-")
+ (rear-context-string . "96 Jun 29 02:41 ")
+ (position . 656))
+("MD-LNC"
+ (filename . "/mnt/d/Current_Task/Sensor/NewRequirement/MD-LNC/Code/MD-LNC/")
+ (front-context-string)
+ (rear-context-string . "96 May 30 11:04 ")
+ (position . 448))
+("MD-CMS"
+ (filename . "/mnt/d/Current_Task/Sensor/NewRequirement/MD-CMS/Code/MD-CMS/code/")
+ (front-context-string . "mdsw.h\n  -rwxrwx")
+ (rear-context-string . "32 Jun 19 09:09 ")
+ (position . 1147))
+("mke02"
+ (filename . "/mnt/d/Current_Task/Sensor/NewRequirement/MEOKON/Software/Code/meokon/CW/mke02z64/Sources/")
+ (front-context-string . "meokon.h\n  drwxr")
+ (rear-context-string . "71 Apr 26 19:38 ")
+ (position . 656))
+("history_files"
+ (filename . "/mnt/d/Current_Task/Source/OpenSource/History_files/history_files/")
+ (front-context-string . "Meokon.org\n  -rw")
+ (rear-context-string . "80 May 10 08:00 ")
+ (position . 2386))
+)
