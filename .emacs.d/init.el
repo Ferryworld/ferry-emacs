@@ -239,7 +239,7 @@
 ;; (define-key c-mode-map  [(tab)] 'company-complete)
 ;; (define-key c++-mode-map  [(tab)] 'company-complete)
 
-(require 'helm-config)
+;;(require 'helm-config)
 (helm-mode 1)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-z C-g") 'helm-git-grep-at-point)
@@ -705,3 +705,5 @@
       (expand-file-name "~/plantuml.jar"))
 
 ;; (find-file "~/rfsw")
+
+(setq openai-key "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")
