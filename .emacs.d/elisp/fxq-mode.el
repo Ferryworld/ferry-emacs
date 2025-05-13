@@ -71,7 +71,7 @@
   (define-key c-mode-map [return] 'newline-and-indent)
   (interactive)
 ;; 自动模式，在此种模式下当你键入{时，会自动根据你设置的对齐风格对齐
-  (c-toggle-auto-state)
+  ;; (c-toggle-auto-state)
 ;; 选择C对齐模式
   (c-set-style "bsd")
 ;;(c-set-style "K&R")

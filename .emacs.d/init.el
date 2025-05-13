@@ -6,6 +6,8 @@
 ;;(setq user-emacs-directory (file-name-directory (concat linsee_path ".emacs.d/")))
 ;;(load (concat linsee_path ".emacs.d/init.el"))
 
+(setq debug-on-error t)
+
 (setq user-full-name "Ferry")
 (setq user-mail-address "xiaoqiang.fu@gmail.com")
 (setq bookmark-default-file (concat linsee_path ".emacs.d/.emacs.bmk"))
