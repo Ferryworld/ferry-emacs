@@ -6,7 +6,7 @@
 ;;(setq user-emacs-directory (file-name-directory (concat linsee_path ".emacs.d/")))
 ;;(load (concat linsee_path ".emacs.d/init.el"))
 
-(setq debug-on-error t)
+;; (setq debug-on-error t)
 
 (setq user-full-name "Ferry")
 (setq user-mail-address "xiaoqiang.fu@gmail.com")
@@ -153,6 +153,12 @@
   (require 'setup-helm)
   (require 'setup-helm-gtags)
   )
+
+
+(load "gemini-cli")
+(require 'gemini-cli)
+(gemini-cli-mode)
+(global-set-key (kbd "C-c g") 'gemini-cli)
 
 ;; load key binding after package installation
 (load "fxq-key-bindings")
@@ -349,9 +355,9 @@
 (add-hook 'c-mode-common-hook 'ws-butler-mode)
 
 (add-to-list 'load-path
-             (concat linsee_path "/.emacs.d/elpa/yasnippet-20200604.246"))
+             (concat linsee_path "/.emacs.d/elpa/yasnippet-20250403.1926"))
 (require 'yasnippet)
-(add-to-list 'yas-snippet-dirs (expand-file-name (concat linsee_path "/.emacs.d/elpa/yasnippet-snippets-20210105.1346")))
+(add-to-list 'yas-snippet-dirs (expand-file-name (concat linsee_path "/.emacs.d/elpa/yasnippet-snippets-20250403.1926")))
 
 (yas-global-mode 1)
 
@@ -712,3 +718,10 @@
 ;; (find-file "~/rfsw")
 
 (setq openai-key "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")
+
+;; Disable undo-tree backup files
+(setq undo-tree-auto-save-history nil)
+(setq undo-tree-history-directory-alist '(("." . "/tmp")))
+
+(require 'claude-code)
+(global-set-key (kbd "C-c c") 'claude-code-transient)

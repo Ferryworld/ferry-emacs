@@ -1,28 +1,28 @@
-;;Í³Ò»ÉèÖÃ¼ü°ï¶¨£¬²¢¾¡Á¿·ÅÔÚÅäÖÃÎÄ¼şµÄ×îºó£¬ÒÔÃâ±»°ó¶¨µÄ¼ü²»Ğ¡ĞÄ±»ºóÃæµÄÅäÖÃÎÄ¼ş¸²¸Ç 
-;;³£ÓÃÏ°¹ß£¬F1´ò¿ª°ïÖú£¬³£ÓÃ°ïÖúÓĞinfoºÍwoman£¨¾ÍÊÇÔÚemacsÖĞ¿´man£© 
+;;ç»Ÿä¸€è®¾ç½®é”®å¸®å®šï¼Œå¹¶å°½é‡æ”¾åœ¨é…ç½®æ–‡ä»¶çš„æœ€åï¼Œä»¥å…è¢«ç»‘å®šçš„é”®ä¸å°å¿ƒè¢«åé¢çš„é…ç½®æ–‡ä»¶è¦†ç›– 
+;;å¸¸ç”¨ä¹ æƒ¯ï¼ŒF1æ‰“å¼€å¸®åŠ©ï¼Œå¸¸ç”¨å¸®åŠ©æœ‰infoå’Œwomanï¼ˆå°±æ˜¯åœ¨emacsä¸­çœ‹manï¼‰ 
 (global-set-key [(f1)] 'info) 
-;;»Ö¸´£¬³£ÓÃ¼ü 
+;;æ¢å¤ï¼Œå¸¸ç”¨é”® 
 (global-set-key [(f2)] 'undo) 
-;;·´»Ö¸´£¬²»ÊÇºÜ³£ÓÃ£¬µ«ÊÇ°ó¶¨ÁË»¹ÊÇ·½±ãĞ© 
+;;åæ¢å¤ï¼Œä¸æ˜¯å¾ˆå¸¸ç”¨ï¼Œä½†æ˜¯ç»‘å®šäº†è¿˜æ˜¯æ–¹ä¾¿äº› 
 (global-set-key [(ctrl f2)] 'redo)
 
 ;;/*2018/08/12 added*/
 (global-set-key (kbd "M-'") 'pop-tag-mark)
 (global-set-key (kbd "M-;") 'fileloop-continue)
 
-;;F4,kill¼ü£¬Ï°¹ßÉèÖÃ£¬¹Ø±Õµ±Ç°buffer 
-(global-set-key [(f4)] 'kill-this-buffer) 
-;;´ò¿ªÒ»¸öÖÕ¶Ë£¬¸ù¾İÄãµÄ°®ºÃ¿ÉÒÔ°ó¶¨Îª£ºeshell,shell,terminal-emulator 
+;;F4,killé”®ï¼Œä¹ æƒ¯è®¾ç½®ï¼Œå…³é—­å½“å‰buffer 
+(global-set-key [(f4)] 'kill-buffer)
+;;æ‰“å¼€ä¸€ä¸ªç»ˆç«¯ï¼Œæ ¹æ®ä½ çš„çˆ±å¥½å¯ä»¥ç»‘å®šä¸ºï¼šeshell,shell,terminal-emulator 
 (global-set-key [(ctrl f5)] 'eshell) 
 (global-set-key [(f5)] 'shell)
-;;ÎÄ¼ş¹ÜÀíÆ÷£¬³£ÓÃ 
+;;æ–‡ä»¶ç®¡ç†å™¨ï¼Œå¸¸ç”¨ 
 (global-set-key [(f6)] 'dired-jump)
 (global-set-key [(ctrl f6)] 'dired-jump-other-window)
-;;Í¬clearÏàÊ¶£¬¾ßÌå¹¦ÄÜÔÚfxq-functions.el½²¹ı 
+;;åŒclearç›¸è¯†ï¼Œå…·ä½“åŠŸèƒ½åœ¨fxq-functions.elè®²è¿‡ 
 ;;(global-set-key [(f7)] 'fxq-line-to-top-of-window) 
-;;±¾ÈËÕıÔÚÑ§scheme£¬³£ÓÃ 
+;;æœ¬äººæ­£åœ¨å­¦schemeï¼Œå¸¸ç”¨ 
 ;;(global-set-key [f8] 'run-scheme) 
-;;´ò¿ªÎÒµÃÈÕÀú 
+;;æ‰“å¼€æˆ‘å¾—æ—¥å† 
 ;;(global-set-key [(f8)] 'calendar)
 
 ;;/* Added by Ferry for ispell and flyspell mode 20120807*/
@@ -42,30 +42,30 @@
 (global-set-key (kbd "<C-wheel-up>") 'text-scale-increase)
 (global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
 
-;;´ò¿ªspeedbar
+;;æ‰“å¼€speedbar
 (global-set-key [(f9)] 'bookmark-bmenu-list)
 ;;(global-set-key [(f9)] 'gnus) 
 
-;;Ï°¹ßÉèÖÃ£¬´ò¿ª£¯¹Ø±Õ²Ëµ¥ 
+;;ä¹ æƒ¯è®¾ç½®ï¼Œæ‰“å¼€ï¼å…³é—­èœå• 
 (global-set-key [(f10)] 'menu-bar-mode) 
 ;;/*2007/6/13 added by Fu to set key for listing bookmark and adding current bookmark*/
 ;; (global-set-key [(f11)] 'list-bookmarks)
 (global-set-key [(f11)] 'bookmark-jump)
 (global-set-key [(f12)] 'bookmark-set)
-;;±àÒëµÈ£¬ÔİÊ±»¹²»³£ÓÃ 
+;;ç¼–è¯‘ç­‰ï¼Œæš‚æ—¶è¿˜ä¸å¸¸ç”¨ 
 ;;(global-set-key [f11] 'compile) 
 ;;(global-set-key [f12] 'gdb) 
 
-;;Ï°¹ßÉèÖÃ£¬Home¼üÉè¶¨¹â±êµ½ÎÄ¼ş¿ªÍ· 
+;;ä¹ æƒ¯è®¾ç½®ï¼ŒHomeé”®è®¾å®šå…‰æ ‡åˆ°æ–‡ä»¶å¼€å¤´ 
 (global-set-key [(home)] 'beginning-of-buffer) 
-;;Ï°¹ßÉèÖÃ£¬End¼üÉè¶¨¹â±êµ½ÎÄ¼ş½áÎ² 
+;;ä¹ æƒ¯è®¾ç½®ï¼ŒEndé”®è®¾å®šå…‰æ ‡åˆ°æ–‡ä»¶ç»“å°¾ 
 (global-set-key [(end)] 'end-of-buffer) 
 
-;;Ìí¼ÓÇå³ı±¸×¢
+;;æ·»åŠ æ¸…é™¤å¤‡æ³¨
 (global-set-key (kbd "C-c C-c") 'comment-region) 
 (global-set-key (kbd "C-c C-v") 'uncomment-region) 
 
-;;´ò¿ªECB compile window
+;;æ‰“å¼€ECB compile window
 (global-set-key (kbd "C-c t") 'ecb-toggle-compile-window) 
 
 ;;Hide/Show Related shortcut 17/12/2010
@@ -87,8 +87,8 @@
 (define-key occur-mode-map "o" (lambda () (interactive)
                                  (occur-mode-goto-occurrence)
                                  (delete-other-windows)))
-;;metaÔÚ³£ÓÃPC¼üÉÏ¾ÍÊÇAlt¼ü 
-;;ÕâÈı¸ö°ó¶¨Ö÷ÒªÊÇ¹â±êÒÆ¶¯µÄ 
+;;metaåœ¨å¸¸ç”¨PCé”®ä¸Šå°±æ˜¯Alté”® 
+;;è¿™ä¸‰ä¸ªç»‘å®šä¸»è¦æ˜¯å…‰æ ‡ç§»åŠ¨çš„ 
 (global-set-key [(meta up)]   'goto-line) 
 (global-set-key [(meta down)] 'goto-line) 
 (global-set-key [(meta left)] 'backward-sexp) 
@@ -109,97 +109,97 @@
 ;; refresh buffer
 (global-set-key (kbd "C-c r") 'revert-buffer) 
 
-;;ÓÃEmacsÊ±³£ÓÃ¶à¸ö´°¿Ú£¬´°¿ÚÖ®¼äµÄÒÆ¶¯ºÜ³£¼û
+;;ç”¨Emacsæ—¶å¸¸ç”¨å¤šä¸ªçª—å£ï¼Œçª—å£ä¹‹é—´çš„ç§»åŠ¨å¾ˆå¸¸è§
 (global-set-key [(meta o)] 'other-window)
-;;Õâ¾ÍÊÇÎÒµÄÇĞ»»bufferµÄÉèÖÃ£¬Í¬windows²Ù×÷ÏàÊ¶ 
-;;Ã»·¨£¬windowsÓÃÁËÁ½Äê¶à£¬ÓĞĞ©Ï°¹ß»¹Õæ²»ºÃ¸Ä 
-;;²»¹ıemacsµÄÅäÖÃ¾ÍÊÇºÃÅä£¬ËæÄãÅä 
+;;è¿™å°±æ˜¯æˆ‘çš„åˆ‡æ¢bufferçš„è®¾ç½®ï¼ŒåŒwindowsæ“ä½œç›¸è¯† 
+;;æ²¡æ³•ï¼Œwindowsç”¨äº†ä¸¤å¹´å¤šï¼Œæœ‰äº›ä¹ æƒ¯è¿˜çœŸä¸å¥½æ”¹ 
+;;ä¸è¿‡emacsçš„é…ç½®å°±æ˜¯å¥½é…ï¼Œéšä½ é… 
 (global-set-key [(control tab)] 'tabbar-forward) 
 (global-set-key (kbd "C-`") 'tabbar-backward)
-;;Õâ¸öÉèÖÃÊÇ¸Ä±äoutlineµÄ¿ì½İ¼üÇ°×º 
-;;outlineÖ÷ÒªÓÃÓÚ±à³ÌµÈ£¬Ä¿Ç°ÓÃµÄ²»¶à 
+;;è¿™ä¸ªè®¾ç½®æ˜¯æ”¹å˜outlineçš„å¿«æ·é”®å‰ç¼€ 
+;;outlineä¸»è¦ç”¨äºç¼–ç¨‹ç­‰ï¼Œç›®å‰ç”¨çš„ä¸å¤š 
 (setq outline-minor-mode-prefix [(control o)]) 
 
-;;Ä¬ÈÏµÄCtrl-zÊÇÊ²Ã´À´×Å£¬¹Ø±Õemacs°É£¬ºÃÏñ»¹ÊÇÇ¿ĞĞ¹Ø±Õ£¬²»ºÃ£¬ÓÃC-x c¾ÍºÃÁË 
-;;ÎÒ¾Í½«Ctrl-z×÷ÎªÎÒµÄ¼üµÄ°ó¶¨ 
+;;é»˜è®¤çš„Ctrl-zæ˜¯ä»€ä¹ˆæ¥ç€ï¼Œå…³é—­emacså§ï¼Œå¥½åƒè¿˜æ˜¯å¼ºè¡Œå…³é—­ï¼Œä¸å¥½ï¼Œç”¨C-x cå°±å¥½äº† 
+;;æˆ‘å°±å°†Ctrl-zä½œä¸ºæˆ‘çš„é”®çš„ç»‘å®š 
 (define-prefix-command 'ctl-z-map) 
 (global-set-key (kbd "C-z") 'ctl-z-map) 
-;;±àÒëµ±Ç°emacs-lispÔ´ÂëÎªelc 
+;;ç¼–è¯‘å½“å‰emacs-lispæºç ä¸ºelc 
 (global-set-key (kbd "C-z b") 'emacs-lisp-byte-compile) 
-;;´ò¿ªÎÒµÄ¼ÆËãÆ÷
+;;æ‰“å¼€æˆ‘çš„è®¡ç®—å™¨
 (global-set-key (kbd "C-z c") 'calculator) 
-;;×Öµä¹¦ÄÜ£¬¾ÍÊÇ²éµ¥´Ê 
+;;å­—å…¸åŠŸèƒ½ï¼Œå°±æ˜¯æŸ¥å•è¯ 
 (global-set-key (kbd "C-z d d") 'dictionary-lookup-definition) 
-;;ÓëÉÏÃæÀàËÆ 
+;;ä¸ä¸Šé¢ç±»ä¼¼ 
 (global-set-key (kbd "C-z d s") 'dictionary-search) 
-;;²éÑ¯µ±Ç°µ¥´ÊµÄÆ¥ÅäµÄµ¥´Ê£¬ÓÃÓÚ²¹È«µ¥´Ê 
+;;æŸ¥è¯¢å½“å‰å•è¯çš„åŒ¹é…çš„å•è¯ï¼Œç”¨äºè¡¥å…¨å•è¯ 
 (global-set-key (kbd "C-z d m") 'dictionary-match-words) 
-;;×ÖµäÌáÊ¾Ä£Ê½£¬Í¬×ÖµäµÄ×Ô¶¯È¡´Ê¹¦ÄÜÏàËÆ 
+;;å­—å…¸æç¤ºæ¨¡å¼ï¼ŒåŒå­—å…¸çš„è‡ªåŠ¨å–è¯åŠŸèƒ½ç›¸ä¼¼ 
 (global-set-key (kbd "C-z d t") 'dictionary-tooltip-mode) 
 ;;Toggle ECB windows ON/OFF
 (global-set-key (kbd "C-z e e") 'ecb-toggle-ecb-windows)
 (global-set-key (kbd "C-z e l") 'ecb-toggle-layout)
-;;Æô¶¯ÎÒµÄIRC¿Í»§¶Ë£¬µ½sirÈ¥ 
+;;å¯åŠ¨æˆ‘çš„IRCå®¢æˆ·ç«¯ï¼Œåˆ°sirå» 
 ;;(global-set-key (kbd "C-z e s") 'erc-irc) 
-;;µ½fansÁÄÌìÈ¥ 
+;;åˆ°fansèŠå¤©å» 
 ;;(global-set-key (kbd "C-z e f") 'erc-fans) 
-;;Æô¶¯Æ´Ğ´¼ì²éÄ£Ê½£¬Ö»¼ì²é´ò¿ªºóÊäÈëµÄµ¥´Ê 
+;;å¯åŠ¨æ‹¼å†™æ£€æŸ¥æ¨¡å¼ï¼Œåªæ£€æŸ¥æ‰“å¼€åè¾“å…¥çš„å•è¯ 
 (global-set-key (kbd "C-z f m") 'flyspell-mode) 
-;;¶ÔÕû¸öbuffer½øĞĞÆ´Ğ´¼ì²é 
+;;å¯¹æ•´ä¸ªbufferè¿›è¡Œæ‹¼å†™æ£€æŸ¥ 
 (global-set-key (kbd "C-z f b") 'flyspell-buffer) 
-;;´ò¿ªgnus 
+;;æ‰“å¼€gnus 
 (global-set-key (kbd "C-z g") 'gnus) 
-;;ÊıÊı±¾ÎÄ¼şÓĞ¶àÉÙÎÄ×Ö 
+;;æ•°æ•°æœ¬æ–‡ä»¶æœ‰å¤šå°‘æ–‡å­— 
 (global-set-key (kbd "C-z h c") 'fxq-count-words-region) 
-;;Í¬Clear¼ü 
+;;åŒClearé”® 
 (global-set-key (kbd "C-z h l") 'fxq-line-to-top-of-window) 
-;;Æ´Ğ´¼ì²é 
+;;æ‹¼å†™æ£€æŸ¥ 
 (global-set-key (kbd "C-z i") 'ispell-minor-mode) 
 ;;debug 
 (global-set-key (kbd "C-z j") 'jdb) 
-;;²é¿´Ç°ÃæÉ¾³ıµÄÄÚÈİ¼ÇÂ¼ 
+;;æŸ¥çœ‹å‰é¢åˆ é™¤çš„å†…å®¹è®°å½• 
 (global-set-key (kbd "C-z k") 'browse-kill-ring) 
 ;;Toggle line number mode 
 (global-set-key (kbd "C-z l") 'wb-line-number-toggle) 
-;;Æô¶¯ÎÒµÃmaxima£¬Æ¯ÁÁÄ£Ê½ 
+;;å¯åŠ¨æˆ‘å¾—maximaï¼Œæ¼‚äº®æ¨¡å¼ 
 (global-set-key (kbd "C-z m") 'imaxima) 
-;;°ó¶¨Á½¸önarrow¹¦ÄÜ 
+;;ç»‘å®šä¸¤ä¸ªnarrowåŠŸèƒ½ 
 (global-set-key (kbd "C-z n n") 'narrow-to-region) 
 (global-set-key (kbd "C-z n w") 'widen) 
 (global-set-key (kbd "C-z o") 'occur) 
-;;¼¸¸öĞ¡ÓÎÏ· 
+;;å‡ ä¸ªå°æ¸¸æˆ 
 (global-set-key (kbd "C-z p g") 'gomoku) 
 (global-set-key (kbd "C-z p t") 'tetris) 
-;;ÓÉÓÚÔÚhtml-helper-modeÄ£Ê½ÖĞF4¼üÊ§Ğ§£¬ÓÃÕâ¸ö°ó¶¨À´¹Ø±Õbuffer 
+;;ç”±äºåœ¨html-helper-modeæ¨¡å¼ä¸­F4é”®å¤±æ•ˆï¼Œç”¨è¿™ä¸ªç»‘å®šæ¥å…³é—­buffer 
 (global-set-key (kbd "C-z q") 'kill-this-buffer) 
-;;½«markedÎÄ¼ş´øÕıÔò±í´ïÊ½µÄËÑË÷ 
+;;å°†markedæ–‡ä»¶å¸¦æ­£åˆ™è¡¨è¾¾å¼çš„æœç´¢ 
 (global-set-key (kbd "C-z r") 'dired-do-query-replace-regexp) 
-;;ÎÒµÃschemeÒ²ÊÇ¿ÉÒÔÔÚemacsÖĞÔËĞĞµÄ
+;;æˆ‘å¾—schemeä¹Ÿæ˜¯å¯ä»¥åœ¨emacsä¸­è¿è¡Œçš„
 (global-set-key (kbd "C-z s") 'run-scheme) 
-;;ÎÒµÄÖÕ¶Ë 
+;;æˆ‘çš„ç»ˆç«¯ 
 (global-set-key (kbd "C-z t") 'term) 
-;;¿ÉÒÔÔÚemacs±à¼­ÎÄ¼şÊ¹ÓÃvimÏ°¹ß£¬³£ÓÃµÄÊÇvi-modeºÍviper-mode 
+;;å¯ä»¥åœ¨emacsç¼–è¾‘æ–‡ä»¶ä½¿ç”¨vimä¹ æƒ¯ï¼Œå¸¸ç”¨çš„æ˜¯vi-modeå’Œviper-mode 
 (global-set-key (kbd "C-z v") 'vi-mode) 
-;;ÎÒµÄÎÄ¼ş¹ÜÀíÆ÷ 
+;;æˆ‘çš„æ–‡ä»¶ç®¡ç†å™¨ 
 ;; (global-set-key (kbd "C-z u d") 'dired-jump) 
 ;; (global-set-key (kbd "C-z u f") 'folding-mode) 
 ;; (global-set-key (kbd "C-z u o") 'outline-minor-mode) 
-;;²éÑ¯service£¬¼ûfxq-other-elisp 
+;;æŸ¥è¯¢serviceï¼Œè§fxq-other-elisp 
 (global-set-key (kbd "C-z u s") 'services-look-up) 
-;;wikiÖĞµÄ°ó¶¨ÉèÖÃ£¬»¹ÓÃµÄ²»¶à 
+;;wikiä¸­çš„ç»‘å®šè®¾ç½®ï¼Œè¿˜ç”¨çš„ä¸å¤š 
 (global-set-key (kbd "C-z w c") 'emacs-wiki-change-project) 
 (global-set-key (kbd "C-z w f") 'emacs-wiki-find-file) 
 (global-set-key (kbd "C-z w h") 'emacs-wiki-preview-html) 
 (global-set-key (kbd "C-z w i") 'emacs-wiki-index) 
 (global-set-key (kbd "C-z w p") 'emacs-wiki-publish) 
 (global-set-key (kbd "C-z w s") 'emacs-wiki-search) 
-;;ÎÒµÄä¯ÀÀÆ÷ 
+;;æˆ‘çš„æµè§ˆå™¨ 
 (global-set-key (kbd "C-z w w") 'w3m) 
-;;Í¬C-z bÓĞµã²»Í¬£¬ÔÚ±àÒëºó²¢¼ÓÔØ 
+;;åŒC-z bæœ‰ç‚¹ä¸åŒï¼Œåœ¨ç¼–è¯‘åå¹¶åŠ è½½ 
 (global-set-key (kbd "C-z x") 'emacs-lisp-byte-compile-and-load) 
-;;Í¬yankÓĞµã²»Ò»Ñù£¬µ«¾ßÌåÔõÑùÍüÁË£¬¸Ğ¾õÕâ¸ö±ÈyankºÃµã 
+;;åŒyankæœ‰ç‚¹ä¸ä¸€æ ·ï¼Œä½†å…·ä½“æ€æ ·å¿˜äº†ï¼Œæ„Ÿè§‰è¿™ä¸ªæ¯”yankå¥½ç‚¹ 
 (global-set-key (kbd "C-z y") 'clipboard-yank) 
-;;ĞŞ¸ÄºóµÄÉè¶¨markµÄ°ó¶¨£¬ÓÉÓÚ¾­³£ÍüÁË·Å×¡control¼ü£¬¾Í¸øÕâ¸ö¹¦ÄÜÁ½¸ö°ó¶¨ÁË 
+;;ä¿®æ”¹åçš„è®¾å®šmarkçš„ç»‘å®šï¼Œç”±äºç»å¸¸å¿˜äº†æ”¾ä½controlé”®ï¼Œå°±ç»™è¿™ä¸ªåŠŸèƒ½ä¸¤ä¸ªç»‘å®šäº† 
 (global-set-key (kbd "C-z z") 'set-mark-command) 
 (global-set-key (kbd "C-z C-z") 'set-mark-command) 
 ;;run rgrep command
