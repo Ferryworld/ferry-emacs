@@ -98,6 +98,15 @@
 (setq load-path (cons (expand-file-name (concat linsee_path ".emacs.d/elisp/")) load-path))
 (require 'cmake-mode)
 
+;; macOS / BSD ls does not support GNU ls --dired.
+(setq dired-use-ls-dired nil)
+
+;; GUI Emacs on macOS does not inherit the shell PATH from zsh.
+(let ((local-bin (expand-file-name "~/.local/bin")))
+  (when (file-directory-p local-bin)
+    (add-to-list 'exec-path local-bin)
+    (setenv "PATH" (concat local-bin path-separator (getenv "PATH")))))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -136,6 +145,11 @@
 
 (package-initialize)
 
+;; Keep direct require calls working even when GUI package activation differs.
+(dolist (package-dir (file-expand-wildcards (expand-file-name "*" package-user-dir)))
+  (when (file-directory-p package-dir)
+    (add-to-list 'load-path package-dir)))
+
 (when (not package-archive-contents)
     (package-refresh-contents))
 
@@ -155,25 +169,29 @@
   )
 
 
-(load "gemini-cli")
-(require 'gemini-cli)
-(gemini-cli-mode)
-(global-set-key (kbd "C-c g") 'gemini-cli)
+(when (require 'gemini-cli nil t)
+  (when (fboundp 'gemini-cli-mode)
+    (gemini-cli-mode))
+  (when (fboundp 'gemini-cli)
+    (global-set-key (kbd "C-c g") 'gemini-cli)))
 
 ;; load key binding after package installation
 (load "fxq-key-bindings")
 
-(load "iedit")
-(require 'iedit)
+(require 'iedit nil t)
 
 (autoload 'markdown-mode "markdown-mode"
   "Major mode for editing Markdown files" t)
 
-(require 'highlight-symbol)
-(global-set-key [(control f3)] 'highlight-symbol)
-(global-set-key [f3] 'highlight-symbol-next)
-(global-set-key [(shift f3)] 'highlight-symbol-prev)
-(global-set-key [(meta f3)] 'highlight-symbol-query-replace)
+(let ((highlight-symbol-dir (car (file-expand-wildcards
+                                   (expand-file-name "highlight-symbol-*" package-user-dir)))))
+  (when highlight-symbol-dir
+    (add-to-list 'load-path highlight-symbol-dir)))
+(when (require 'highlight-symbol nil t)
+  (global-set-key [(control f3)] 'highlight-symbol)
+  (global-set-key [f3] 'highlight-symbol-next)
+  (global-set-key [(shift f3)] 'highlight-symbol-prev)
+  (global-set-key [(meta f3)] 'highlight-symbol-query-replace))
 
 (global-highlight-changes-mode t)
 ;; (add-hook 'text-mode-hook 'highlight-symbol-mode)
@@ -185,8 +203,12 @@
 ;; (add-hook 'php-mode-hook 'highlight-symbol-mode)
 ;; (add-hook 'emacs-lisp-mode-hook 'highlight-symbol-mode)
 
-(require 'highlight-parentheses)
-(global-highlight-parentheses-mode t)
+(let ((highlight-parentheses-dir (car (file-expand-wildcards
+                                      (expand-file-name "highlight-parentheses-*" package-user-dir)))))
+  (when highlight-parentheses-dir
+    (add-to-list 'load-path highlight-parentheses-dir)))
+(when (require 'highlight-parentheses nil t)
+  (global-highlight-parentheses-mode t))
 ;; (add-hook 'c-mode-hook 'highlight-parentheses-mode)
 ;; (add-hook 'c++-mode-hook 'highlight-parentheses-mode)
 ;; ;; (add-hook 'tnsdl-mode-hook 'highlight-parentheses-mode)
@@ -201,6 +223,7 @@
 ;; (add-to-list 'ac-dictionary-directories (concat linsee_path "/.emacs.d/elisp/auto-complete/dict"))
 ;; (add-to-list 'load-path (concat linsee_path "/.emacs.d/elisp/auto-complete-clang"))
 (require 'auto-complete-clang)
+(require 'auto-complete-config)
 (setq ac-clang-auto-save t)
 (setq ac-auto-start t)
 (setq ac-quick-help-delay 0.5)
@@ -234,7 +257,6 @@
 ;; ac-source-gtags
 (my-ac-config)
 
-(require 'auto-complete-config)
 (ac-config-default)
 
 ;; (require 'setup-ggtags)
@@ -304,8 +326,8 @@
 ;; (add-to-list 'company-backends 'company-c-headers)
 ;; (add-to-list 'company-c-headers-path-system "/usr/include/c++/4.8/")
 
-(require 'company-tabnine)
-(add-to-list 'company-backends #'company-tabnine)
+(when (require 'company-tabnine nil t)
+  (add-to-list 'company-backends #'company-tabnine))
 ;; - Trigger completion immediately.
   (setq company-idle-delay 0)
 ;;
@@ -330,8 +352,9 @@
 (semantic-add-system-include "/usr/local/include")
 (semantic-add-system-include "~/linux/include")
 
-(projectile-global-mode)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(when (fboundp 'projectile-mode)
+  (projectile-mode +1)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 (global-semantic-idle-summary-mode 1)
 (add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
@@ -354,10 +377,15 @@
 (require 'ws-butler)
 (add-hook 'c-mode-common-hook 'ws-butler-mode)
 
-(add-to-list 'load-path
-             (concat linsee_path "/.emacs.d/elpa/yasnippet-20250403.1926"))
+(let ((yasnippet-dir (car (file-expand-wildcards
+                           (concat linsee_path ".emacs.d/elpa/yasnippet-[0-9]*")))))
+  (when yasnippet-dir
+    (add-to-list 'load-path yasnippet-dir)))
 (require 'yasnippet)
-(add-to-list 'yas-snippet-dirs (expand-file-name (concat linsee_path "/.emacs.d/elpa/yasnippet-snippets-20250403.1926")))
+(let ((yasnippet-snippets-dir (car (file-expand-wildcards
+                                    (concat linsee_path ".emacs.d/elpa/yasnippet-snippets-*/snippets")))))
+  (when yasnippet-snippets-dir
+    (add-to-list 'yas-snippet-dirs yasnippet-snippets-dir)))
 
 (yas-global-mode 1)
 
@@ -723,5 +751,12 @@
 (setq undo-tree-auto-save-history nil)
 (setq undo-tree-history-directory-alist '(("." . "/tmp")))
 
-(require 'claude-code)
-(global-set-key (kbd "C-c c") 'claude-code-transient)
+(when (require 'claude-code nil t)
+  (setq claude-code-executable (or (executable-find "claude")
+                                   (expand-file-name "~/.local/bin/claude")))
+  ;; Allow Claude Code to run from ordinary directories, not only Projectile projects.
+  (defun claude-code-normalize-project-root (project-root)
+    "Normalize PROJECT-ROOT, falling back to `default-directory'."
+    (directory-file-name (or project-root default-directory)))
+  (when (fboundp 'claude-code-transient)
+    (global-set-key (kbd "C-c c") 'claude-code-transient)))

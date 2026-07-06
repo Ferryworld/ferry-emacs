@@ -110,6 +110,8 @@
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; Locate the helm-swoop folder to your path
     (use-package helm-swoop
+      :ensure nil
+      :if (locate-library "helm-swoop")
       :bind (("C-c h o" . helm-swoop)
              ("C-c s" . helm-multi-swoop-all))
       :config

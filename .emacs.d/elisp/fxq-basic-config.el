@@ -16,6 +16,9 @@
             '(left .100))
           default-frame-alist))
 
+;; Default font size. 200 means 20pt.
+(set-face-attribute 'default nil :height 200)
+
 (set-face-foreground 'highlight "white")
 (set-face-background 'highlight "black")
 (set-face-foreground 'region "cyan")
@@ -85,11 +88,14 @@
 (set-face-foreground 'holiday "white")))
 
 ;;(tool-bar-mode nil)
-(tool-bar-mode -1)
+(when (fboundp 'tool-bar-mode)
+  (tool-bar-mode -1))
 ;;(menu-bar-mode nil)
-(menu-bar-mode -1)
+(when (fboundp 'menu-bar-mode)
+  (menu-bar-mode -1))
 ;;(scroll-bar-mode nil)
-(scroll-bar-mode -1)
+(when (fboundp 'scroll-bar-mode)
+  (scroll-bar-mode -1))
 
 (setq version-control t)
 (setq kept-old-versions 2)
@@ -188,7 +194,8 @@
 ;;Setting for wb-line-number
 (require 'wb-line-number)
 (setq truncate-partial-width-windows nil) ; use continuous line
-(set-scroll-bar-mode nil)                 ; no scroll bar, even in x-window system
+(when (fboundp 'set-scroll-bar-mode)
+  (set-scroll-bar-mode nil))                 ; no scroll bar, even in x-window system
 
 ;;Setting for keisen-mode
 (if window-system

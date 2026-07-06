@@ -2,7 +2,13 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("MD-LNC_wsl"
+(("md-sbp-motor"
+ (filename . "~/Current_Task/Sensor/NewRequirement/MD-SBP/Code/md-sbp/md-sbp-motor/")
+ (front-context-string . "README.md\n  -rw-")
+ (rear-context-string . "28 Jun 27 09:53 ")
+ (position . 564)
+ (last-modified 27211 10344 433051 0))
+("MD-LNC_wsl"
  (filename . "~/xqfu/mind/MD-LNC/")
  (front-context-string)
  (rear-context-string . "96 Jun 28 20:43 ")
